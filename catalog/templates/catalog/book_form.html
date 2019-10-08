@@ -1,0 +1,17 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+  {% if book %}
+    <h1>Update book - {{ book }}</h1>
+  {% else %}
+    <h1>Add a new book</h1>
+  {% endif %}
+
+  <form action="" method="post">
+    {% csrf_token %}
+    <table>
+      {{ form.as_table }}
+    </table>
+    <input type="submit" value="Submit" />
+  </form>
+{% endblock %}
