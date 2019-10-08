@@ -10,10 +10,19 @@
           {{ author.last_name }}, {{ author.first_name }}
         </a>
         ({{ author.date_of_birth }} - {{ author.date_of_death }})
+        {% if perms.catalog.can_mark_returned %}
+          - <a href="{% url 'author-update' author.pk %}">Update</a>
+          - <a href="{% url 'author-delete' author.pk %}">Delete</a>
+        {% endif %}
       </li>
     {% endfor %}
   </ul>
   {% else %}
-    <p>There are no books in the library.</p>
-  {% endif %}       
+    <p>There are no Authors yet.</p>
+  {% endif %}
+
+  {% if perms.catalog.can_mark_returned %}
+    <a class="btn btn-secondary" href="{% url 'author-create' %}">Add an Author</a>
+  {% endif %}
+  <hr>
 {% endblock %}
